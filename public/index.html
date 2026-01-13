@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Message Builder | 7-Eleven</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏪</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="stripes">
+        <div class="stripe stripe-orange"></div>
+        <div class="stripe stripe-red"></div>
+      </div>
+      <div class="header-content">
+        <div class="header-icon">🏪</div>
+        <div>
+          <h1>Message Builder</h1>
+          <p>Create targeted store announcements with action items</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Tabs -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="create">Create New</button>
+      <button class="tab" data-tab="history">Past Submissions</button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+      <!-- Create Tab -->
+      <div id="create-tab" class="tab-content active">
+        
+        <!-- Step 1: Store IDs -->
+        <section class="section">
+          <div class="section-header">
+            <div class="step-number">1</div>
+            <h2 class="section-title">Target Stores</h2>
+          </div>
+          <textarea 
+            id="storeIds" 
+            placeholder="Enter Store IDs (comma or newline separated)&#10;Example: 12345, 67890, 11223"
+          ></textarea>
+          <button id="verifyBtn" class="btn btn-primary">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            Verify Users
+          </button>
+          <div id="verifyResults"></div>
+        </section>
+
+        <!-- Step 2: Message Details -->
+        <section class="section">
+          <div class="section-header">
+            <div class="step-number">2</div>
+            <h2 class="section-title">Message Details</h2>
+          </div>
+          <div class="grid-2">
+            <div>
+              <label for="title">Title <span class="required">*</span></label>
+              <input type="text" id="title" placeholder="e.g., Weekly Store Updates">
+            </div>
+            <div>
+              <label for="department">Department/Category</label>
+              <select id="department">
+                <option value="">Select category...</option>
+                <option value="Operations">Operations</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Food Service">Food Service</option>
+                <option value="Merchandising">Merchandising</option>
+                <option value="Safety">Safety & Compliance</option>
+                <option value="Training">Training</option>
+                <option value="HR">Human Resources</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 3: Tasks -->
+        <section class="section section-tasks">
+          <div class="tasks-header">
+            <div class="section-header">
+              <div class="step-number">3</div>
+              <h2 class="section-title">Action Items (Tasks)</h2>
+            </div>
+            <span class="task-count"><span id="taskCountNum">1</span>/20 tasks</span>
+          </div>
+          
+          <div id="tasksContainer"></div>
+          
+          <button id="addTaskBtn" class="btn btn-ghost">
+            <svg class="icon" viewBox="0 0 24 24">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Add Another Task
+          </button>
+        </section>
+
+        <!-- Submit Button -->
+        <button id="submitBtn" class="btn btn-submit" disabled>
+          <svg class="icon" viewBox="0 0 24 24">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+          Create Channel & Distribute Tasks
+        </button>
+        <p class="helper-text">Tasks will be posted to the News channel and distributed to store task lists</p>
+      </div>
+
+      <!-- History Tab -->
+      <div id="history-tab" class="tab-content">
+        <div class="filter-row">
+          <input type="text" id="filterStoreId" placeholder="Filter by Store ID (optional)">
+          <button id="filterBtn" class="btn btn-primary">
+            <svg class="icon" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            Search
+          </button>
+        </div>
+        <div id="historyContainer">
+          <div class="empty-state">
+            <svg class="icon-large" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            <p>Loading past submissions...</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-brand">
+        <div class="footer-colors">
+          <div class="footer-color color-green"></div>
+          <div class="footer-color color-orange"></div>
+          <div class="footer-color color-red"></div>
+        </div>
+        <span>Internal Communications Tool</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
